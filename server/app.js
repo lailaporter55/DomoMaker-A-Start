@@ -25,14 +25,14 @@ app.use(helmet());
 app.use('/assets', express.static(path.resolve(`${__dirname}/../hosted`)));
 app.use(favicon(path.resolve(`${__dirname}/../hosted/img/favicon.png`)));
 app.use(compress());
-app.ise(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 app.engine('handlebars', expressHandlebars.engine({ defaultLayout: '' }));
 app.set('view engine', 'handlebars');
 app.set('views', `${__dirname}/../views`);
 
-//router(app);
+router(app);
 
 app.listen(port, (err) => {
     if (err) {throw err;}
