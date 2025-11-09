@@ -1,5 +1,7 @@
 const mongoose = require('mongoose'); 
 const _ = require('underscore'); 
+const models = require('../models'); 
+const Domo = models.Domo; 
 
 const setName = (name) => _.escape(name).trim(); 
 
