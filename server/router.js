@@ -8,8 +8,10 @@ const router = (app) => {
     app.post('/signup', controllers.Account.signup);
 
     app.get('/logout', controllers.Account.logout);
+
     app.get('/maker', controllers.Domo.makerPage);
-    
-    app.get('/', controllers.Domo.loginPage);
+    app.post('/maker', comtrollers.Domo.makeDomo); 
+
+    app.get('/', controllers.Account.loginPage);
 }; 
 module.exports = router;
