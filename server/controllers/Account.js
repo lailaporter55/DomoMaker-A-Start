@@ -10,6 +10,7 @@ const signupPage = (req, res) => {
 };
 
 const logout = (req, res) => {
+    req.session.destroy(); //will remove a users session
     return res.redirect('/');
 };
 
