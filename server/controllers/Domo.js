@@ -69,7 +69,6 @@ const makerPage = async (req, res) => {
 
 const DomoModel = mongoose.model('Domo', DomoSchema); 
 module.exports = {
-    DomoModel, 
     makerPage, 
     makeDomo, 
 }
