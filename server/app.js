@@ -8,8 +8,8 @@ const mongoose = require('mongoose');
 const expressHandlebars = require('express-handlebars');
 const helmet = require('helmet');
 const session = require('express-session');
-const RedisStore = require('connect-redis').RedisStore;
-const redis = require('redis');
+const RedisStore = require('connect-redis').default;
+const { createClient } = require('redis');
 
 const router = require('./router.js');
 
