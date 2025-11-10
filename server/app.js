@@ -30,6 +30,7 @@ const redisClient = createClient({
 redisClient.on('error', err => console.log('Redis Client Error', err));
 
 redisClient.connect().then(() => {
+    
     const app = express();
 
     app.use(helmet());
@@ -48,6 +49,7 @@ redisClient.connect().then(() => {
         resave: false,
         saveUninitialized: false,
     }));
+    
 
     app.engine('handlebars', expressHandlebars.engine({ defaultLayout: '' }));
     app.set('view engine', 'handlebars');
