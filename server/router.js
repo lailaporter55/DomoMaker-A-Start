@@ -1,4 +1,4 @@
-const controllers = require('./controllers');
+const controllers = require('./controllers2');
 const mid = require('./middleware'); 
 
 const router = (app) => {

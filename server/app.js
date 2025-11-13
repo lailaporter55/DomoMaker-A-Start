@@ -11,7 +11,7 @@ const session = require('express-session');
 const RedisStore = require('connect-redis').RedisStore;
 const { createClient } = require('redis');
 
-const router = require('./router.js');
+const router = require('../server2/router.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 

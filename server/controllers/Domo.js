@@ -1,37 +1,5 @@
-const mongoose = require('mongoose'); 
-const _ = require('underscore'); 
 const models = require('../models'); 
 const Domo = models.Domo; 
-
-const setName = (name) => _.escape(name).trim(); 
-
-const DomoSchema = new mongoose.Schema({
-    name: {
-        type: String, 
-        required: true, 
-        trim: true, 
-        set: setName,
-    }, 
-    age: {
-        type: Number, 
-        min: 0, 
-        required: true,
-    }, 
-    owner:{
-        type: mongoose.Schema.ObjectId, 
-        required: true, 
-        ref: 'Account', 
-    }, 
-    createdDate:{
-        type: Date, 
-        default: Date.now,
-    },
-}); 
-
-DomoSchema.statics.toAPI = (doc) => ({
-    name: doc.name, 
-    age: doc.age,
-});
 
 const makeDomo = async (req, res) => {
     if(!req.body.name || !req.body.age){
@@ -39,7 +7,7 @@ const makeDomo = async (req, res) => {
     }
     const domoData = {
         name: req.body.name, 
-        age: req.bady.age, 
+        age: req.body.age, 
         owner: req.session.account._id, 
     }; 
     try{
@@ -58,7 +26,7 @@ const makeDomo = async (req, res) => {
 const makerPage = async (req, res) => {
     try{
         const query = {owner: req.session.account._id}; 
-        const docs = await Domo.find(query).select('name age').learn().exec(); 
+        const docs = await Domo.find(query).select('name age').lean().exec(); 
 
         return res.render('app', {domos: docs}); 
     }catch (err){
@@ -67,7 +35,6 @@ const makerPage = async (req, res) => {
     }
 }
 
-const DomoModel = mongoose.model('Domo', DomoSchema); 
 module.exports = {
     makerPage, 
     makeDomo, 

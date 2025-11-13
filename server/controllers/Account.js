@@ -48,7 +48,7 @@ const signup = async (req, res) => {
         const newAccount = new Account({ username, password: hash });
         await newAccount.save();
         req.session.account = Account.toAPI(newAccount);
-        return res.status.json({ redirect: '/maker' });
+        return res.status(200).json({ redirect: '/maker' });
     } catch (err) {
         console.log(err);
         if (err.code === 11000) {
